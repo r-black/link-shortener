@@ -1,5 +1,12 @@
 # Link Shortener
 
+## Images
+![Main Page](./images/main.jpg "Main Page") 
+
+![Analytics Page](./images/analytics.jpg "Analytics Page")
+
+![Diagram Page](./images/diagram.jpg "Diagram Page")
+
 ## Used Technologies
 - Python
 - Django
@@ -15,7 +22,7 @@
 ### Building
 Development:
 ```bash
-docker-compose up -d
+docker-compose up
 ```
 ### Following Logs
 Development:
