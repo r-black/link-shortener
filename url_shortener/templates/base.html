@@ -1,0 +1,59 @@
+{% with "URL Shortener" as title %}
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ title }}{% endblock %}</title>
+  {# Load CSS and JavaScript #}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  {% block headextra %}{% endblock headextra %}
+</head>
+<body>
+  <div id="wrapper">
+    <div class="jumbotron" id="banner" style="padding-bottom: 0;">
+      <div class="container">
+        <h1><a href="{% url 'app_urls:index' %}">URL Shortener</a></h1>
+        <ul class="nav nav-tabs" style="border: 0;">
+          <li role="presentation" class="nav-item">
+            <a class="nav-link {% block index_nav %}{% endblock %}" href="{% url 'app_urls:index' %}">Home</a>
+          </li>
+          <li role="presentation" class="nav-item">
+            <a class="nav-link {% block analytics_nav %}{% endblock %}" href="{% url 'app_urls:analytics' %}">Analytics</a>
+          </li>
+          
+          {% block navextra %}{% endblock %}
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-info" role="info">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          <span class="sr-only">Information</span>
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+      {% block content %}{% endblock %}
+    </div>
+    <div id="push"></div>
+  </div>
+  <div id="footer">
+    <div class="container">
+      <p class="muted credit">
+        Source code available on <a href="https://github.com/r-black/link-shortener">GitHub</a>.
+      </p>
+    </div>
+  </div>
+  {% block bodyextra %}{% endblock %}
+</body>
+</html>
+{% endwith %}
